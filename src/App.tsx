@@ -39,25 +39,30 @@ export default function App() {
 
   useEffect(() => {
     // Initialize Lenis for buttery smooth scrolling
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
     lenisRef.current = new Lenis({
-      duration: 1.2,
+      duration: isTouch ? 0.8 : 1.2, // Faster duration on touch
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
+      smoothWheel: !isTouch, // Disable smooth wheel if touch is detected
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5, // Reduced from 2 for better control
+      infinite: false,
     });
 
+    let frameId: number;
     const raf = (time: number) => {
       lenisRef.current?.raf(time);
-      requestAnimationFrame(raf);
+      frameId = requestAnimationFrame(raf);
     };
 
-    requestAnimationFrame(raf);
+    frameId = requestAnimationFrame(raf);
 
     return () => {
       lenisRef.current?.destroy();
+      cancelAnimationFrame(frameId);
     };
   }, []);
 
@@ -66,7 +71,7 @@ export default function App() {
       document.body.style.overflow = 'hidden';
       lenisRef.current?.stop();
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
       lenisRef.current?.start();
     }
   }, [isModalOpen]);
@@ -88,14 +93,14 @@ export default function App() {
   }, []);
 
   return (
-    <main className="bg-black text-white selection:bg-primary selection:text-black gpu-optim">
-      {/* Noise Texture Overlay - Reduced opacity for performance */}
-      <div className="fixed inset-0 z-[100] pointer-events-none opacity-[0.03] contrast-125 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+    <main className="bg-black text-white selection:bg-primary selection:text-black">
+      {/* Noise Texture Overlay - Reduced opacity for performance, hidden on very small screens */}
+      <div className="fixed inset-0 z-[100] pointer-events-none opacity-[0.015] sm:opacity-[0.03] contrast-125 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       
       {/* Global Cinematic Background Blobs - Optimized for performance */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-         <div className="absolute top-[10%] left-[10%] w-[40vw] h-[40vw] bg-primary/3 blur-[100px] rounded-full" />
-         <div className="absolute bottom-[10%] right-[10%] w-[35vw] h-[35vw] bg-secondary/3 blur-[100px] rounded-full" />
+         <div className="absolute top-[10%] left-[10%] w-[60vw] h-[60vw] sm:w-[40vw] sm:h-[40vw] bg-primary/3 blur-[60px] sm:blur-[100px] rounded-full" />
+         <div className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] sm:w-[35vw] sm:h-[35vw] bg-secondary/2 blur-[60px] sm:blur-[100px] rounded-full" />
       </div>
 
       <GlobalSearch />

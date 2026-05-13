@@ -1,29 +1,23 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { motion } from 'motion/react';
+import { useMobile } from '../hooks/useMobile';
 
 export default function FloatingParticles() {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check, { passive: true });
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useMobile();
 
   // Optimized particle count and properties memoization
   const particles = useMemo(() => {
-    const count = isMobile ? 12 : 30;
+    const count = isMobile ? 8 : 25; // Further reduced count
     return Array.from({ length: count }).map((_, i) => ({
       id: i,
       x: (Math.random() * 100).toFixed(2) + "%",
       y: (Math.random() * 100).toFixed(2) + "%",
       size: (Math.random() * 2 + 1).toFixed(1) + "px",
-      duration: (Math.random() * 10 + 20).toFixed(1),
-      delay: (Math.random() * 5).toFixed(1),
-      color: i % 3 === 0 ? 'rgba(6, 182, 212, 0.15)' : i % 3 === 1 ? 'rgba(147, 51, 234, 0.15)' : 'rgba(255, 255, 255, 0.08)',
-      moveX: (Math.random() - 0.5) * 100 + "px",
-      moveY: (Math.random() - 0.5) * 100 + "px",
+      duration: (Math.random() * 15 + 25).toFixed(1), // Slower duration
+      delay: (Math.random() * 10).toFixed(1),
+      color: i % 2 === 0 ? 'rgba(6, 182, 212, 0.1)' : 'rgba(147, 51, 234, 0.1)',
+      moveX: (Math.random() - 0.5) * 50 + "px",
+      moveY: (Math.random() - 0.5) * 50 + "px",
     }));
   }, [isMobile]);
   
@@ -39,14 +33,12 @@ export default function FloatingParticles() {
             backgroundColor: p.color,
             left: p.x,
             top: p.y,
-            willChange: 'transform, opacity',
-            transform: 'translate3d(0,0,0)',
           }}
           animate={{
             x: [0, p.moveX],
             y: [0, p.moveY],
-            opacity: [0.2, 0.5, 0.2],
-            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1], // Lower opacity
+            scale: [1, 1.1, 1],
           }}
           transition={{
             duration: parseFloat(p.duration),

@@ -27,7 +27,7 @@ function AboutVisual() {
        </div>
 
        <div className="absolute bottom-8 left-8 right-8">
-          <div className="glass-premium p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-white/10 backdrop-blur-2xl">
+          <div className="glass-premium p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-white/10 backdrop-blur-xl">
              <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center space-x-2">
                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />

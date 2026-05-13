@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
 import { motion } from 'motion/react';
 import AnimatedHeading from '../components/AnimatedHeading';
+import { useMobile } from '../hooks/useMobile';
 import { 
   Check, 
   Zap, 
@@ -19,14 +20,7 @@ const automationFeatures = [
 ];
 
 export default function AutomationShowcase() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useMobile();
 
   return (
     <section className="py-24 relative bg-zinc-950 overflow-hidden">
@@ -74,7 +68,7 @@ export default function AutomationShowcase() {
               initial={{ opacity: 0, rotateY: isMobile ? 0 : 20 }}
               whileInView={{ opacity: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="relative p-7 md:p-10 rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card gpu-optim"
+              className="relative p-7 md:p-10 rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-md sm:backdrop-blur-xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card"
               animate={{ 
                 y: [0, -8, 0],
               }}

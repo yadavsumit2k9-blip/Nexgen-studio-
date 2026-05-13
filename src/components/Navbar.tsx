@@ -50,7 +50,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - offset;
 
       window.scrollTo({
@@ -94,14 +94,14 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
   };
 
   const itemVariants = {
-    closed: { opacity: 0, x: -20, filter: 'blur(10px)' },
+    closed: { opacity: 0, x: -20, filter: 'blur(0px)' }, // Removed blur for mobile performance
     open: { opacity: 1, x: 0, filter: 'blur(0px)' }
   };
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        isScrolled ? 'py-4 translate-y-0 bg-black/60 backdrop-blur-2xl border-b border-white/5 shadow-2xl' : 'py-8'
+        isScrolled ? 'py-4 translate-y-0 bg-black/60 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'py-8'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -196,7 +196,7 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="md:hidden fixed inset-x-0 top-0 h-screen bg-zinc-950/98 backdrop-blur-3xl z-[-1] overflow-hidden"
+            className="md:hidden fixed inset-x-0 top-0 h-screen bg-zinc-950/98 backdrop-blur-xl z-[-1] overflow-hidden"
           >
             <div className="container mx-auto px-6 pt-32 pb-12 flex flex-col h-full">
               <div className="flex flex-col space-y-10 flex-1">

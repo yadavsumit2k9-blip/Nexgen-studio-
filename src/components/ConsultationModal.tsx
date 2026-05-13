@@ -66,7 +66,7 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/95 backdrop-blur-3xl"
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl"
           />
           
           {/* Modal Container */}

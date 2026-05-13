@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
+import { useMobile } from '../hooks/useMobile';
 
 export default function CursorGlow() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMobile(1024); // Disable on mobile/tablet
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -11,9 +12,7 @@ export default function CursorGlow() {
   const smoothY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024); // Disable on mobile/tablet
-    check();
-    window.addEventListener('resize', check);
+    if (isMobile) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
@@ -23,9 +22,8 @@ export default function CursorGlow() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', check);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
 
   if (isMobile) return null;
 

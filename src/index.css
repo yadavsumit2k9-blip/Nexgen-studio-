@@ -67,8 +67,8 @@
 
 @layer utilities {
   .section-visibility {
-    content-visibility: auto;
-    contain-intrinsic-size: 0 500px;
+    /* Removed content-visibility: auto as it can cause blank screens on mobile */
+    contain: paint;
   }
 
   .bg-mesh {
@@ -90,20 +90,20 @@
   }
 
   .glass {
-    @apply bg-zinc-950/20 backdrop-blur-[4px] border border-white/[0.03] shadow-[0_12px_48px_0_rgba(0,0,0,0.4)];
+    @apply bg-zinc-950/20 backdrop-blur-[4px] sm:backdrop-blur-[8px] border border-white/[0.03] shadow-[0_12px_48px_0_rgba(0,0,0,0.4)];
   }
 
   .glass-dark {
-    @apply bg-zinc-950/40 backdrop-blur-[8px] border border-white/[0.02];
+    @apply bg-zinc-950/40 backdrop-blur-[6px] sm:backdrop-blur-[12px] border border-white/[0.02];
   }
 
   .glass-premium {
-    @apply bg-white/[0.01] backdrop-blur-[12px] border border-white/[0.05] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)];
+    @apply bg-white/[0.01] backdrop-blur-[8px] sm:backdrop-blur-[20px] border border-white/[0.05] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)];
   }
 
   .gpu-optim {
-    transform: translate3d(0,0,0);
-    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .cinematic-bloom {
@@ -118,5 +118,5 @@
 
 /* Loader Styles */
 .loader-logo-glow {
-  filter: drop-shadow(0 0 15px rgba(6, 182, 212, 0.8));
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
 }

@@ -1,5 +1,6 @@
+import { useEffect } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
-import { useEffect, useState } from 'react';
+import { useMobile } from '../hooks/useMobile';
 import { 
   Activity, 
   Bot, 
@@ -13,7 +14,7 @@ import {
 } from 'lucide-react';
 
 export default function HeroVisual() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMobile();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -31,12 +32,8 @@ export default function HeroVisual() {
   const chartY = useTransform(smoothY, [-300, 300], [-10, 10]);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check);
-    
     const handleMouseMove = (e: MouseEvent) => {
-      if (window.innerWidth < 768) return;
+      if (isMobile) return;
       const { clientX, clientY } = e;
       const { innerWidth, innerHeight } = window;
       const x = clientX - innerWidth / 2;
@@ -47,10 +44,9 @@ export default function HeroVisual() {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      window.removeEventListener('resize', check);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, isMobile]);
 
   return (
     <div className="relative w-full max-w-6xl mx-auto mt-16 px-4 sm:px-6">
@@ -58,12 +54,12 @@ export default function HeroVisual() {
         style={{
           rotateX: isMobile ? 0 : rotateX,
           rotateY: isMobile ? 0 : rotateY,
-          transformStyle: "preserve-3d",
+          transformStyle: isMobile ? "flat" : "preserve-3d",
         }}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="relative aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-zinc-950/20 backdrop-blur-xl border border-white/5 shadow-[0_40px_80px_rgba(0,0,0,0.7)] group gpu-optim"
+        className="relative aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-zinc-950/20 backdrop-blur-md sm:backdrop-blur-xl border border-white/5 shadow-[0_40px_80px_rgba(0,0,0,0.7)] group"
       >
         {/* Cinematic Light Reflection Sweep - Optimized for performance */}
         {!isMobile && (
@@ -348,7 +344,7 @@ export default function HeroVisual() {
           initial={{ opacity: 0, scale: 0.8, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 2.6, duration: 0.8 }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-44 bg-transparent rounded-3xl border border-white/10 p-5 shadow-2xl backdrop-blur-2xl z-20 hidden md:block group/chart overflow-hidden"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-44 bg-transparent rounded-3xl border border-white/10 p-5 shadow-2xl backdrop-blur-xl z-20 hidden md:block group/chart overflow-hidden"
         >
           {/* Animated Glow Border */}
           <div className="absolute inset-0 rounded-3xl p-[1px] -z-10 overflow-hidden">

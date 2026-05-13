@@ -1,5 +1,6 @@
 import { useRef, useState, ReactNode, MouseEvent } from 'react';
 import { motion } from 'motion/react';
+import { useMobile } from '../hooks/useMobile';
 
 interface MagneticProps {
   children: ReactNode;
@@ -9,9 +10,10 @@ interface MagneticProps {
 export default function Magnetic({ children, strength = 0.5 }: MagneticProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const isMobile = useMobile();
 
   const handleMouseMove = (e: MouseEvent) => {
-    if (!ref.current) return;
+    if (!ref.current || isMobile) return;
     const { clientX, clientY } = e;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const x = (clientX - (left + width / 2)) * strength;

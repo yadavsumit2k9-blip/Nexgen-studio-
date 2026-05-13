@@ -19,6 +19,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     if (!isInView) return;
     
     setIsCounting(true);
+    let frameId: number;
     let startTime: number | null = null;
     const duration = 2000;
     const startValue = 0;
@@ -34,13 +35,14 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
       setCount(currentCount);
 
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
       } else {
         setIsCounting(false);
       }
     };
 
-    requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
   }, [value, isInView]);
 
   return (
@@ -95,7 +97,7 @@ export default function Stats() {
 
               {/* Core Metrics */}
               <div className="md:text-left relative z-10">
-                <div className="text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tighter mb-4 text-white group-hover:tracking-tight transition-all duration-1000 gpu-optim">
+                <div className="text-6xl md:text-7xl lg:text-8xl font-display font-black tracking-tighter mb-4 text-white group-hover:tracking-tight transition-all duration-1000">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </div>
                 <div className="flex items-center space-x-3">

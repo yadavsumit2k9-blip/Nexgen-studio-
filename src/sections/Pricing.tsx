@@ -61,7 +61,7 @@ export default function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
                 duration: 1.2,
                 ease: [0.22, 1, 0.36, 1]
               }}
-              className={`relative p-8 md:p-10 rounded-[2.5rem] border transition-all duration-1000 overflow-hidden group flex flex-col gpu-optim ${
+              className={`relative p-8 md:p-10 rounded-[2.5rem] border transition-all duration-1000 overflow-hidden group flex flex-col ${
                 p.popular 
                 ? 'bg-zinc-950/40 backdrop-blur-xl border-primary/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] md:scale-105 z-10' 
                 : 'bg-white/[0.01] border-white/5 hover:border-white/10'

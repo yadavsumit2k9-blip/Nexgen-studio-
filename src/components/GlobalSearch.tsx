@@ -73,7 +73,7 @@ export default function GlobalSearch() {
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
@@ -110,7 +110,7 @@ export default function GlobalSearch() {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="relative w-full max-w-2xl bg-zinc-950/80 border border-white/10 rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] glass-premium gpu-optim"
+              className="relative w-full max-w-2xl bg-zinc-950/80 border border-white/10 rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] glass-premium"
             >
               <div className="p-6 border-b border-white/5 flex items-center space-x-4">
                 <Search className="w-6 h-6 text-primary animate-pulse" />

@@ -1,20 +1,13 @@
 import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
 import { ChevronRight, Sparkles, MessageCircle } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import Magnetic from '../components/Magnetic';
 import AnimatedHeading from '../components/AnimatedHeading';
 import HeroVisual from '../components/HeroVisual';
+import { useMobile } from '../hooks/useMobile';
 
 export default function Hero({ onOpenModal }: { onOpenModal: () => void }) {
-  const [isMobile, setIsMobile] = useState(false);
-  
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener('resize', check, { passive: true });
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useMobile();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-16">
@@ -54,7 +47,7 @@ export default function Hero({ onOpenModal }: { onOpenModal: () => void }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-white/[0.02] backdrop-blur-3xl mb-12 shadow-2xl"
+            className="inline-flex items-center space-x-3 px-5 py-2.5 rounded-full bg-white/[0.02] backdrop-blur-md sm:backdrop-blur-xl mb-12 shadow-2xl"
           >
             <Sparkles className="w-3.5 h-3.5 text-primary animate-pulse" />
             <span className="text-[9px] md:text-xs font-black tracking-[0.4em] uppercase text-zinc-500">

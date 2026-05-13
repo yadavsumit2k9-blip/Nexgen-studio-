@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cpu, Zap, Network, Database, MessageSquare, ShieldCheck, Share2 } from 'lucide-react';
 import AnimatedHeading from '../components/AnimatedHeading';
+import { useMobile } from '../hooks/useMobile';
 
 const nodes = [
   { id: 'input', icon: MessageSquare, label: 'Omni-Channel Feed', color: 'text-blue-400', desktopPos: { x: 10, y: 50 }, mobilePos: { x: 50, y: 12 } },
@@ -12,14 +12,7 @@ const nodes = [
 ];
 
 export default function Orchestration() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1024);
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
-  }, []);
+  const isMobile = useMobile(1024);
 
   const floatingVariants = {
     animate: (i: number) => ({
