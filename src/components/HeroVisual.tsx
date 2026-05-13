@@ -60,59 +60,51 @@ export default function HeroVisual() {
           rotateY: isMobile ? 0 : rotateY,
           transformStyle: "preserve-3d",
         }}
-        initial={{ opacity: 0, y: 100 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-zinc-950/20 backdrop-blur-2xl border border-white/5 shadow-[0_60px_120px_rgba(0,0,0,0.7)] group will-change-transform"
+        transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="relative aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-zinc-950/20 backdrop-blur-xl border border-white/5 shadow-[0_40px_80px_rgba(0,0,0,0.7)] group gpu-optim"
       >
-        {/* Cinematic Light Reflection Sweep */}
-        <motion.div 
-          animate={{ x: ['100%', '-100%'], opacity: [0, 0.3, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-20deg] z-10 pointer-events-none"
-        />
+        {/* Cinematic Light Reflection Sweep - Optimized for performance */}
+        {!isMobile && (
+          <motion.div 
+            animate={{ x: ['100%', '-100%'], opacity: [0, 0.15, 0] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-[-20deg] z-10 pointer-events-none"
+          />
+        )}
 
-        {/* Mouse Follow Glow - Desktop Only */}
+        {/* Mouse Follow Glow - Desktop Only - Reduced Opacity */}
         {!isMobile && (
           <motion.div
             style={{
               left: glowX,
               top: glowY,
             }}
-            className="absolute w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0"
+            className="absolute w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0"
           />
         )}
 
-        {/* Ambient Grid */}
-        <motion.div 
-          animate={{ 
-            backgroundPosition: ["0px 0px", "40px 40px"],
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-          className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0" 
-        />
+        {/* Ambient Grid - Simplified */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0 pointer-events-none" />
         
-        {/* Floating Background Particles */}
+        {/* Floating Background Particles - Optimized count and speed */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          {[...Array(isMobile ? 8 : 20)].map((_, i) => (
+          {[...Array(isMobile ? 5 : 12)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-primary/20 rounded-full"
+              className="absolute w-1 h-1 bg-primary/10 rounded-full"
               initial={{ 
                 x: Math.random() * 100 + "%", 
                 y: Math.random() * 100 + "%",
-                opacity: Math.random() * 0.5 
+                opacity: 0
               }}
               animate={{ 
-                y: [null, "-20%", "120%"],
-                opacity: [0, 0.5, 0]
+                y: [null, "-10%", "110%"],
+                opacity: [0, 0.3, 0]
               }}
               transition={{ 
-                duration: 10 + Math.random() * 20, 
+                duration: 20 + Math.random() * 20, 
                 repeat: Infinity, 
                 ease: "linear",
                 delay: Math.random() * 10
@@ -178,28 +170,30 @@ export default function HeroVisual() {
 
           {/* Center Visual: Graph and Nodes */}
           <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-64 flex items-center justify-center pointer-events-none">
-             {/* Functional Neural Core Pulse */}
+             {/* Functional Neural Core Pulse - Simplified for mobile */}
              <div className="relative flex items-center justify-center">
                 <motion.div 
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+                  animate={isMobile ? { opacity: [0.1, 0.15, 0.1] } : { scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute w-[400px] h-[400px] bg-primary/20 blur-[100px] rounded-full"
+                  className={`${isMobile ? 'w-64 h-64 blur-[60px]' : 'w-[400px] h-[400px] blur-[100px]'} absolute bg-primary/20 rounded-full`}
                 />
-                <motion.div 
-                  animate={{ scale: [1, 1.4, 1], opacity: [0, 0.1, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                  className="absolute w-[200px] h-[200px] border border-primary/20 rounded-full"
-                />
+                {!isMobile && (
+                  <motion.div 
+                    animate={{ scale: [1, 1.4, 1], opacity: [0, 0.1, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                    className="absolute w-[200px] h-[200px] border border-primary/20 rounded-full"
+                  />
+                )}
              </div>
 
-             {/* Pulsing Light Nodes */}
-             {[...Array(isMobile ? 4 : 10)].map((_, i) => (
+             {/* Pulsing Light Nodes - Reduced count for performance */}
+             {[...Array(isMobile ? 3 : 6)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-1 h-1 bg-primary/40 rounded-full blur-[2px]"
+                  className="absolute w-1 h-1 bg-primary/30 rounded-full blur-[1px]"
                   style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
+                    left: `${20 + Math.random() * 60}%`,
+                    top: `${20 + Math.random() * 60}%`,
                   }}
                   animate={{
                     opacity: [0, 0.8, 0],
@@ -278,36 +272,36 @@ export default function HeroVisual() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 >
-                   {[0, 60, 120, 180, 240, 300].map((angle, i) => (
+                   {[0, 120, 240].map((angle, i) => (
                      <div key={i}>
                        <motion.div
-                         className="absolute w-2 h-2 rounded-full bg-primary shadow-[0_0_15px_rgba(6,182,212,0.8)]"
+                         className="absolute w-2 h-2 rounded-full bg-primary/40 shadow-[0_0_10px_rgba(6,182,212,0.4)]"
                          style={{
-                           transform: `rotate(${angle}deg) translateX(${isMobile ? 80 : 150 + (i % 2) * 20}px)`,
+                           transform: `rotate(${angle}deg) translateX(${isMobile ? 80 : 140}px)`,
                          }}
                          animate={{ 
-                           opacity: [0.3, 1, 0.3],
-                           scale: [1, 1.5, 1],
+                           opacity: [0.3, 0.8, 0.3],
+                           scale: [1, 1.2, 1],
                          }}
                          transition={{
-                           duration: 2 + i,
+                           duration: 3 + i,
                            repeat: Infinity,
                          }}
                        />
                        {!isMobile && (
                          <motion.div
-                           className="absolute h-px bg-gradient-to-r from-primary/40 to-transparent"
+                           className="absolute h-px bg-gradient-to-r from-primary/20 to-transparent"
                            style={{
-                             width: '100px',
-                             transform: `rotate(${angle}deg) translateX(${150 + (i % 2) * 20}px)`,
+                             width: '80px',
+                             transform: `rotate(${angle}deg) translateX(${140}px)`,
                              transformOrigin: 'left center',
                            }}
                            animate={{
-                             opacity: [0, 0.4, 0],
-                             scaleX: [0, 1.2, 0],
+                             opacity: [0, 0.2, 0],
+                             scaleX: [0, 1, 0],
                            }}
                            transition={{
-                             duration: 3 + i,
+                             duration: 4 + i,
                              repeat: Infinity,
                              ease: "easeInOut",
                            }}
@@ -370,13 +364,13 @@ export default function HeroVisual() {
           </div>
           
           <div className="flex items-end justify-between space-x-1.5 h-20">
-            {[...Array(12)].map((_, i) => (
+            {[...Array(8)].map((_, i) => (
               <motion.div
                 key={i}
-                className="w-full bg-gradient-to-t from-primary/20 to-primary rounded-t-sm shadow-[0_0_10px_rgba(6,182,212,0.3)]"
+                className="w-full bg-gradient-to-t from-primary/10 to-primary/40 rounded-t-sm"
                 initial={{ height: "40%" }}
-                animate={{ height: [`${30 + Math.random() * 40}%`, `${60 + Math.random() * 30}%`, `${30 + Math.random() * 40}%`] }}
-                transition={{ duration: 3 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ height: [`${30 + Math.random() * 20}%`, `${50 + Math.random() * 20}%`, `${30 + Math.random() * 20}%`] }}
+                transition={{ duration: 4 + i * 0.3, repeat: Infinity, ease: "easeInOut" }}
               />
             ))}
           </div>

@@ -130,12 +130,12 @@ function CardVisual({ type }: { type: string }) {
     return (
       <div className="absolute inset-0 p-8 flex items-end justify-center pointer-events-none opacity-10 group-hover:opacity-30 transition-opacity">
         <div className="w-full h-24 flex items-end justify-between space-x-1.5">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
               initial={{ height: 0 }}
-              whileInView={{ height: `${10 + Math.random() * 90}%` }}
-              transition={{ delay: i * 0.04, duration: 1.5, ease: "easeOut" }}
+              whileInView={{ height: `${20 + (i * 7) % 80}%` }}
+              transition={{ delay: i * 0.05, duration: 1.2, ease: "easeOut" }}
               className="w-full bg-white/10 rounded-t-full"
             />
           ))}
@@ -168,9 +168,9 @@ function CardVisual({ type }: { type: string }) {
 
 export default function Services() {
   return (
-    <section id="services" className="py-32 relative overflow-hidden">
+    <section id="services" className="py-32 relative overflow-hidden section-visibility">
       {/* Premium Ambient Light */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.05),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.03),transparent_70%)] pointer-events-none" />
 
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-32">

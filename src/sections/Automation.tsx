@@ -73,47 +73,34 @@ export default function AutomationShowcase() {
             <motion.div 
               initial={{ opacity: 0, rotateY: isMobile ? 0 : 20 }}
               whileInView={{ opacity: 1, rotateY: 0 }}
-              viewport={{ once: true }}
-              className="relative p-7 md:p-10 rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-3xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card gpu-optim"
+              viewport={{ once: true, margin: "-100px" }}
+              className="relative p-7 md:p-10 rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card gpu-optim"
               animate={{ 
-                y: [0, -10, 0],
+                y: [0, -8, 0],
               }}
               transition={{ 
-                duration: 6, 
+                duration: 8, 
                 repeat: Infinity, 
                 ease: "easeInOut" 
               }}
             >
               {/* background with better depth */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
               
-              {/* cinematic light sweep */}
-              <motion.div 
-                animate={{ x: ['-200%', '200%'] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent skew-x-[-20deg] pointer-events-none"
-              />
-              
-              {/* Dynamic Aura - More Functional */}
-              <motion.div 
-                animate={{ opacity: [0.1, 0.2, 0.1] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-primary/20 blur-[120px] pointer-events-none" 
-              />
+              {/* Dynamic Aura - More Functional & Optimized */}
+              <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-primary/10 blur-[80px] pointer-events-none opacity-50" />
               
               <div className="relative z-10">
                 <div className="flex justify-between mb-12">
                    <div className="flex items-center space-x-3 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#06b6d4]" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#06b6d4]" />
                       <span className="text-[9px] font-black tracking-[0.2em] text-white/40 uppercase font-mono">AUTOMATION_ACTIVE</span>
                    </div>
                    <div className="flex space-x-1.5">
                       {[1, 2, 3].map(i => (
-                        <motion.div 
+                        <div 
                           key={i}
-                          animate={{ opacity: [0.2, 1, 0.2] }}
-                          transition={{ duration: 2, delay: i * 0.3, repeat: Infinity }}
-                          className="w-1.5 h-1.5 rounded-full bg-primary/40" 
+                          className={`w-1.5 h-1.5 rounded-full bg-primary/40 ${i === 1 ? 'animate-pulse' : ''}`} 
                         />
                       ))}
                    </div>

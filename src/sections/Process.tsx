@@ -38,7 +38,7 @@ export default function Process() {
   return (
     <section id="process" className="py-32 relative bg-transparent overflow-hidden">
       {/* Background Decorative Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.03),transparent_70%)] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.02),transparent_70%)] pointer-events-none" />
 
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mb-24">
@@ -58,12 +58,12 @@ export default function Process() {
         </div>
 
         <div className="relative">
-          {/* Central Vertical Line */}
-          <div className="absolute top-0 left-8 md:left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/[0.05]">
+          {/* Central Vertical Line - Optimized */}
+          <div className="absolute top-0 left-8 md:left-1/2 -translate-x-1/2 w-[1px] h-full bg-white/[0.03]">
             <motion.div 
                animate={{ top: ["-300px", "100%"] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-               className="absolute w-full h-[300px] bg-gradient-to-b from-transparent via-primary to-transparent" 
+               transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+               className="absolute w-full h-[300px] bg-gradient-to-b from-transparent via-primary/30 to-transparent" 
             />
           </div>
 

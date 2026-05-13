@@ -55,9 +55,9 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function Stats() {
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-transparent">
-      {/* Cinematic Pulse Light */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.03),transparent_70%)] pointer-events-none" />
+    <section className="py-24 md:py-32 relative overflow-hidden bg-transparent section-visibility">
+      {/* Cinematic Pulse Light - Optimized */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.02),transparent_70%)] pointer-events-none" />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">

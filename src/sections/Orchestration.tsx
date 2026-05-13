@@ -48,8 +48,8 @@ export default function Orchestration() {
            </p>
         </div>
 
-        <div className="relative min-h-[500px] lg:min-h-0 lg:aspect-[21/9] w-full bg-white/[0.01] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 overflow-hidden group will-change-[transform,opacity] shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
-           <div className="absolute inset-0 bg-zinc-950/40 backdrop-blur-3xl pointer-events-none" />
+        <div className="relative min-h-[500px] lg:min-h-0 lg:aspect-[21/9] w-full bg-white/[0.01] rounded-[2rem] md:rounded-[2.5rem] p-4 md:p-8 overflow-hidden group will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.4)]">
+           <div className="absolute inset-0 bg-zinc-950/40 backdrop-blur-xl pointer-events-none" />
            {/* Connection Lines (Desktop) */}
            <AnimatePresence>
              {!isMobile && (
@@ -58,22 +58,19 @@ export default function Orchestration() {
                  initial={{ opacity: 0 }}
                  animate={{ opacity: 1 }}
                  exit={{ opacity: 0 }}
-                 className="absolute inset-0 w-full h-full pointer-events-none opacity-15" 
+                 className="absolute inset-0 w-full h-full pointer-events-none opacity-10" 
                  viewBox="0 0 1000 450" 
                  preserveAspectRatio="none"
                >
-                  <motion.path
+                  <path
                     d="M 100,225 L 500,225"
                     stroke="url(#flow-grad)"
-                    strokeWidth="1.5"
+                    strokeWidth="1"
                     strokeDasharray="4 8"
-                    initial={{ pathOffset: 0 }}
-                    animate={{ pathOffset: -1 }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                   />
-                  <motion.path d="M 500,225 L 900,225" stroke="#fff" strokeWidth="1" strokeDasharray="4 8" />
-                  <motion.path d="M 500,90 L 500,225" stroke="#9333ea" strokeWidth="1" strokeDasharray="4 8" />
-                  <motion.path d="M 500,360 L 500,225" stroke="#10b981" strokeWidth="1" strokeDasharray="4 8" />
+                  <path d="M 500,225 L 900,225" stroke="#fff" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.2" />
+                  <path d="M 500,90 L 500,225" stroke="#9333ea" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.2" />
+                  <path d="M 500,360 L 500,225" stroke="#10b981" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.2" />
                   <defs>
                     <linearGradient id="flow-grad" x1="0" y1="0" x2="1" y2="0">
                       <stop offset="0%" stopColor="#3b82f6" />

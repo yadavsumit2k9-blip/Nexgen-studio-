@@ -38,24 +38,22 @@ function ProjectVisual({ type }: { type: string }) {
   if (type === 'infrastructure') {
     return (
       <div className="absolute inset-0 bg-zinc-950 overflow-hidden group/infra">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.1),transparent_70%)]" />
-        <div className="absolute inset-0 grid-pattern opacity-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.05),transparent_70%)] pointer-events-none" />
+        <div className="absolute inset-0 grid-pattern opacity-5 pointer-events-none" />
         
-        {/* Abstract Infrastructure Visual */}
+        {/* Abstract Infrastructure Visual - Optimized */}
         <div className="absolute inset-0 flex items-center justify-center">
            <div className="relative w-72 h-72">
               {[0, 1, 2].map(i => (
-                <motion.div
+                <div
                   key={i}
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20 + i * 10, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 border border-white/5 rounded-[3rem]"
-                  style={{ scale: 0.8 + i * 0.2, opacity: 0.3 - i * 0.1 }}
+                  className={`absolute inset-0 border border-white/5 rounded-[3rem] ${i === 0 ? 'animate-pulse' : ''}`}
+                  style={{ scale: 0.8 + i * 0.2, opacity: 0.2 - i * 0.05 }}
                 />
               ))}
               <div className="absolute inset-0 flex items-center justify-center">
-                 <div className="w-32 h-32 rounded-[2.5rem] bg-zinc-900 border border-white/10 flex items-center justify-center shadow-3xl">
-                    <Cpu className="w-12 h-12 text-primary" />
+                 <div className="w-24 h-24 rounded-[2rem] bg-zinc-900 border border-white/5 flex items-center justify-center shadow-2xl">
+                    <Cpu className="w-8 h-8 text-primary/40 group-hover:text-primary transition-colors duration-1000" />
                  </div>
               </div>
            </div>
@@ -67,23 +65,17 @@ function ProjectVisual({ type }: { type: string }) {
   if (type === 'os') {
     return (
       <div className="absolute inset-0 bg-zinc-950 p-10 flex flex-col font-mono text-xs overflow-hidden group/os">
-        <div className="flex justify-between items-center mb-10 opacity-40">
+        <div className="flex justify-between items-center mb-10 opacity-30">
           <span className="text-white font-black tracking-[0.2em] uppercase">V_CORE_SYS_01</span>
           <div className="px-3 py-1 rounded bg-white/5 border border-white/10 text-primary">STABLE</div>
         </div>
-        <div className="flex-1 glass-dark rounded-[3rem] border border-white/5 p-8 relative overflow-hidden group-hover:border-purple-500/20 transition-all duration-1000">
-           <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="flex-1 glass-dark rounded-[3rem] border border-white/5 p-8 relative overflow-hidden group-hover:border-purple-500/20 transition-all duration-1000 gpu-optim">
+           <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-500/5 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
            <div className="space-y-6">
-              {[...Array(5)].map((_, i) => (
+              {[...Array(isMobile ? 3 : 5)].map((_, i) => (
                 <div key={i} className="flex items-center space-x-6">
-                   <div className="w-2 h-2 rounded-full bg-purple-500/40" />
-                   <div className="flex-1 h-[1px] bg-white/5" />
-                   <motion.div 
-                     initial={{ width: 0 }}
-                     whileInView={{ width: 40 }}
-                     transition={{ delay: i * 0.1, duration: 2 }}
-                     className="h-1 bg-purple-500/20 rounded-full" 
-                   />
+                   <div className="w-1.5 h-1.5 rounded-full bg-purple-500/30" />
+                   <div className="flex-1 h-[1px] bg-white/[0.03]" />
                 </div>
               ))}
            </div>
@@ -95,20 +87,18 @@ function ProjectVisual({ type }: { type: string }) {
   if (type === 'finance') {
     return (
       <div className="absolute inset-0 bg-zinc-950 p-10 overflow-hidden group/finance">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(16,185,129,0.05),transparent_70%)]" />
-        <div className="h-full glass-dark rounded-[3rem] border border-white/5 p-10 flex flex-col justify-end relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(16,185,129,0.03),transparent_70%)] pointer-events-none" />
+        <div className="h-full glass-dark rounded-[3rem] border border-white/5 p-10 flex flex-col justify-end relative overflow-hidden gpu-optim">
            <div className="mb-8">
-              <div className="text-xs font-black text-emerald-500 tracking-[0.3em] uppercase mb-2">Alpha_Synthetic_Feed</div>
-              <div className="text-4xl font-display font-black text-white">$42,00.41</div>
+              <div className="text-[10px] font-black text-emerald-500 tracking-[0.3em] uppercase mb-2">Alpha_Synthetic_Feed</div>
+              <div className="text-3xl md:text-4xl font-display font-black text-white">$42,00.41</div>
            </div>
            <div className="h-24 flex items-end justify-between space-x-1.5">
-              {[...Array(20)].map((_, i) => (
-                <motion.div
+              {[...Array(isMobile ? 12 : 20)].map((_, i) => (
+                <div
                   key={i}
-                  initial={{ height: 0 }}
-                  whileInView={{ height: `${20 + Math.random() * 80}%` }}
-                  transition={{ duration: 1.5, delay: i * 0.05, ease: "easeOut" }}
-                  className="w-full bg-emerald-500/20 rounded-t-full group-hover:bg-emerald-500/40 transition-colors"
+                  className="w-full bg-emerald-500/[0.08] rounded-t-full group-hover:bg-emerald-500/[0.15] transition-colors"
+                  style={{ height: `${20 + Math.random() * 80}%` }}
                 />
               ))}
            </div>
@@ -120,18 +110,14 @@ function ProjectVisual({ type }: { type: string }) {
   if (type === 'analytics') {
     return (
       <div className="absolute inset-0 bg-zinc-950 flex items-center justify-center p-12 group/analytics">
-        <div className="relative w-full h-full glass-dark rounded-[3rem] border border-white/5 flex items-center justify-center overflow-hidden">
-           <div className="absolute inset-0 grid-pattern opacity-5" />
-           <motion.div
-             animate={{ rotate: 360 }}
-             transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-             className="w-64 h-64 border border-white/5 rounded-full flex items-center justify-center"
-           >
-              <div className="absolute inset-0 border-t border-blue-500/40 rounded-full" />
-           </motion.div>
+        <div className="relative w-full h-full glass-dark rounded-[3rem] border border-white/5 flex items-center justify-center overflow-hidden gpu-optim">
+           <div className="absolute inset-0 grid-pattern opacity-5 pointer-events-none" />
+           <div className="w-56 h-56 border border-white/[0.03] rounded-full flex items-center justify-center relative">
+              <div className="absolute inset-0 border-t border-blue-500/20 rounded-full" />
+           </div>
            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-24 h-24 rounded-[2rem] bg-zinc-950 border border-white/10 flex items-center justify-center shadow-3xl">
-                 <Zap className="w-10 h-10 text-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+              <div className="w-20 h-20 rounded-[1.5rem] bg-zinc-950 border border-white/5 flex items-center justify-center shadow-xl">
+                 <Zap className="w-8 h-8 text-blue-500/40 group-hover:text-blue-500 transition-colors duration-1000" />
               </div>
            </div>
         </div>

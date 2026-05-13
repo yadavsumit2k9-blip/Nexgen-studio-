@@ -6,20 +6,20 @@ import AnimatedHeading from '../components/AnimatedHeading';
 const plans = [
   {
     name: 'Starter',
-    price: '1,999',
+    price: '60',
     desc: 'Bespoke AI-powered environments and essential cognitive automation for emergent startups.',
     features: ['AI Strategic Landing Page', 'Core Automation Logic', 'Executive UX/UI Design', 'Neural SEO Optimization', 'Global WhatsApp Gateway'],
   },
   {
     name: 'Growth',
-    price: '4,999',
+    price: '100',
     desc: 'Comprehensive AI intelligence ecosystem engineered for high-growth enterprise scale.',
     features: ['Full Spectrum Web Platform', 'Advanced Neural Automation', 'Enterprise CRM Synergy', 'Cognitive Chatbot Integration', 'Premium High-Fidelity Design', 'Priority Executive Support'],
     popular: true,
   },
   {
     name: 'Enterprise',
-    price: 'Elite',
+    price: 'Custom Pricing',
     desc: 'Custom-engineered digital infrastructure for global-scale mission-critical operations.',
     features: ['Custom SaaS Development', 'Enterprise Grade AI Infra', 'Proprietary Dashboards', 'Infinite Scale Automation', 'Dedicated Intelligence Team', 'Neural System Integrations'],
   },
@@ -28,9 +28,9 @@ const plans = [
 export default function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
   return (
     <section id="pricing" className="py-32 relative bg-zinc-950/20 overflow-hidden">
-      {/* Decorative Light Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[600px] bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[400px] bg-purple-500/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none" />
+      {/* Decorative Light Elements - Optimized */}
+      <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-primary/5 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/4 pointer-events-none opacity-40" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[300px] bg-purple-500/5 blur-[60px] rounded-full translate-y-1/2 -translate-x-1/4 pointer-events-none opacity-30" />
 
       <div className="container mx-auto px-6">
         <div className="text-center mb-32">
@@ -44,9 +44,9 @@ export default function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
           <AnimatedHeading
             text="Global Strategic Investment"
             highlightedWords={["Investment"]}
-            className="text-2xl md:text-4xl font-display font-black mb-8 justify-center tracking-tighter"
+            className="text-2xl md:text-3xl font-display font-black mb-8 justify-center tracking-tighter"
           />
-          <p className="text-zinc-500 text-base md:text-lg font-medium max-w-2xl mx-auto">Selecting the appropriate cognitive architecture for your business trajectory.</p>
+          <p className="text-zinc-500 text-sm md:text-base font-medium max-w-2xl mx-auto">Selecting the appropriate cognitive architecture for your business trajectory.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto items-stretch">
@@ -61,16 +61,16 @@ export default function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
                 duration: 1.2,
                 ease: [0.22, 1, 0.36, 1]
               }}
-              className={`relative p-8 md:p-10 lg:p-12 rounded-[2.5rem] md:rounded-[3rem] border transition-all duration-1000 overflow-hidden group flex flex-col gpu-optim ${
+              className={`relative p-8 md:p-10 rounded-[2.5rem] border transition-all duration-1000 overflow-hidden group flex flex-col gpu-optim ${
                 p.popular 
-                ? 'bg-zinc-950/40 glass-premium border-primary/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] md:scale-105 z-10' 
+                ? 'bg-zinc-950/40 backdrop-blur-xl border-primary/20 shadow-[0_40px_100px_rgba(0,0,0,0.6)] md:scale-105 z-10' 
                 : 'bg-white/[0.01] border-white/5 hover:border-white/10'
               }`}
             >
               {p.popular && (
-                <div className="absolute top-8 right-8 flex items-center space-x-2 px-3 py-1.5 bg-primary rounded-full text-black font-black text-[9px] uppercase tracking-widest shadow-2xl animate-pulse-soft">
-                   <div className="w-1.5 h-1.5 rounded-full bg-black" />
-                   <span>Strategic Choice</span>
+                <div className="absolute top-8 right-8 flex items-center space-x-2 px-4 py-2 bg-primary rounded-full text-black font-black text-[9px] uppercase tracking-widest shadow-2xl">
+                   <div className="w-1 h-1 rounded-full bg-black animate-pulse" />
+                   <span>Most Popular</span>
                 </div>
               )}
               
@@ -81,9 +81,13 @@ export default function Pricing({ onOpenModal }: { onOpenModal: () => void }) {
               </div>
               
               <div className="flex items-baseline mb-10">
-                 <span className="text-[10px] font-black text-primary/40 mr-2 uppercase tracking-widest">From</span>
-                 <span className="text-4xl md:text-5xl lg:text-6xl font-display font-black tracking-tighter text-white">{p.name === 'Enterprise' ? 'Elite' : `$${p.price}`}</span>
-                 {p.price !== 'Elite' && <span className="text-zinc-700 ml-3 font-black uppercase text-[10px] tracking-widest">/ Engine</span>}
+                 <span className="text-[10px] font-black text-primary/40 mr-2 uppercase tracking-widest">
+                   {p.name === 'Enterprise' ? 'Contact' : 'Investment'}
+                 </span>
+                 <span className="text-4xl md:text-5xl lg:text-3xl font-display font-black tracking-tighter text-white">
+                   {p.name === 'Enterprise' ? p.price : `$${p.price}`}
+                 </span>
+                 {p.name !== 'Enterprise' && <span className="text-zinc-700 ml-3 font-black uppercase text-[10px] tracking-widest">/ Engine</span>}
               </div>
 
               <div className="space-y-4 mb-12 flex-grow">

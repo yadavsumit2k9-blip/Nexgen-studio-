@@ -58,25 +58,16 @@ export default function AnimatedHeading({
               key={index}
               className={`inline-block relative overflow-visible ${isHighlighted ? "z-10" : ""}`}
             >
-              <motion.span
-                animate={isHighlighted ? { 
-                  y: [0, -0.5, 0],
-                } : {}}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: index * 0.1
-                }}
+              <span
                 data-text={word}
                 className={`inline-block py-1 tracking-tight ${
                   isHighlighted 
                     ? "text-gradient cinematic-bloom" 
-                    : "text-zinc-200 text-depth text-shimmer"
+                    : "text-zinc-200"
                 }`}
               >
                 {word}
-              </motion.span>
+              </span>
             </motion.span>
           );
         })}

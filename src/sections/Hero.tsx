@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
 import { ChevronRight, Sparkles, MessageCircle } from 'lucide-react';
 import FloatingParticles from '../components/FloatingParticles';
 import Magnetic from '../components/Magnetic';
@@ -6,24 +7,37 @@ import AnimatedHeading from '../components/AnimatedHeading';
 import HeroVisual from '../components/HeroVisual';
 
 export default function Hero({ onOpenModal }: { onOpenModal: () => void }) {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-16">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 z-0">
-        {/* Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.12),transparent_70%)]" />
+        {/* Top Glow - Optimized intensity */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.08),transparent_70%)] pointer-events-none" />
         
-        {/* Ambient Moving Lights */}
-        <motion.div 
-          animate={{ scale: [1, 1.4, 1], x: [0, 80, 0], y: [0, -40, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" 
-        />
-        <motion.div 
-          animate={{ scale: [1.3, 1, 1.3], x: [0, -80, 0], y: [0, 40, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-secondary/5 blur-[140px] rounded-full pointer-events-none" 
-        />
+        {/* Ambient Moving Lights - Slowed and simplified */}
+        {!isMobile && (
+          <>
+            <motion.div 
+              animate={{ scale: [1, 1.1, 1], x: [0, 30, 0] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-primary/3 blur-[120px] rounded-full pointer-events-none opacity-40" 
+            />
+            <motion.div 
+              animate={{ scale: [1.1, 1, 1.1], x: [0, -30, 0] }}
+              transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-secondary/3 blur-[120px] rounded-full pointer-events-none opacity-40" 
+            />
+          </>
+        )}
         
         {/* Atmospheric Dust/Particles */}
         <FloatingParticles />
