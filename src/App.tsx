@@ -95,7 +95,7 @@ export default function App() {
   return (
     <main className="bg-black text-white selection:bg-primary selection:text-black">
       {/* Noise Texture Overlay - Reduced opacity for performance, hidden on very small screens */}
-      <div className="fixed inset-0 z-[100] pointer-events-none opacity-[0.015] sm:opacity-[0.03] contrast-125 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      <div className="fixed inset-0 z-[10] pointer-events-none opacity-[0.015] sm:opacity-[0.03] contrast-125 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       
       {/* Global Cinematic Background Blobs - Optimized for performance */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">

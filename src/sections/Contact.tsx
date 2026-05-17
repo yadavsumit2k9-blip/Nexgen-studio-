@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MessageCircle, Mail, Send, Clock, Sparkles, Instagram } from 'lucide-react';
+import { MessageCircle, Mail, Send, Clock, Sparkles } from 'lucide-react';
 import Magnetic from '../components/Magnetic';
 import AnimatedHeading from '../components/AnimatedHeading';
 
@@ -62,7 +62,7 @@ export default function Contact({ onOpenModal }: { onOpenModal: () => void }) {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3">WhatsApp</h3>
+                <h3 className="text-2xl font-bold mb-3">Chat With Us On WhatsApp</h3>
                 <p className="text-zinc-400 mb-8 font-medium">Real-time collaboration and instant support for your next project.</p>
 
                 <div className="flex items-center space-x-2 text-zinc-500 text-xs mb-8">
@@ -73,10 +73,10 @@ export default function Contact({ onOpenModal }: { onOpenModal: () => void }) {
                 <Magnetic strength={0.1}>
                   <button 
                     onClick={onOpenModal}
-                    className="flex items-center justify-center w-full py-4 px-6 bg-transparent text-white rounded-2xl font-bold text-sm hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:bg-primary/5 transition-all group/btn"
+                    className="flex items-center justify-center w-full py-4 px-6 bg-transparent text-white rounded-2xl font-bold text-sm hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] hover:bg-primary/5 transition-all group/btn border border-white/5 hover:border-primary/40"
                   >
                     <MessageCircle className="mr-2 w-4 h-4 fill-primary" />
-                    Send WhatsApp Message
+                    Open WhatsApp Uplink
                   </button>
                 </Magnetic>
               </div>
@@ -98,7 +98,7 @@ export default function Contact({ onOpenModal }: { onOpenModal: () => void }) {
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3">Email Inquiry</h3>
+                <h3 className="text-2xl font-bold mb-3">Contact via Email</h3>
                 <p className="text-zinc-400 mb-8 font-medium">Detailed project briefs and partnerships discussed with our core team.</p>
 
                 <div className="flex items-center space-x-2 text-zinc-500 text-xs mb-8">
@@ -113,7 +113,7 @@ export default function Contact({ onOpenModal }: { onOpenModal: () => void }) {
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000" />
                     <Mail className="mr-2 w-4 h-4 transition-transform group-hover/btn:scale-110" />
-                    Shoot an Email
+                    Launch Email Session
                   </a>
                 </Magnetic>
               </div>
@@ -124,19 +124,10 @@ export default function Contact({ onOpenModal }: { onOpenModal: () => void }) {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-16 p-8 rounded-3xl border border-white/5 bg-zinc-900/20 backdrop-blur-sm text-center flex flex-col md:flex-row items-center justify-between gap-6"
+            className="mt-16 p-8 rounded-3xl border border-white/5 bg-zinc-900/20 backdrop-blur-sm text-center flex flex-col md:flex-row items-center justify-center gap-6"
           >
-            <div className="flex items-center space-x-4">
-               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-                  <Instagram className="w-5 h-5" />
-               </div>
-               <div className="text-left">
-                  <div className="text-[10px] font-black tracking-[0.3em] uppercase text-zinc-600 mb-0.5">Follow our journey</div>
-                  <a href="https://www.instagram.com/buildwithnexgen" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:text-primary transition-colors">@buildwithnexgen</a>
-               </div>
-            </div>
             <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.4em]">
-               Based in India • Global Solutions
+               Direct Connection: buildwithnexgen@gmail.com • Operational Hub: India
             </p>
           </motion.div>
         </div>

@@ -181,32 +181,32 @@ export default function Showcase({ onOpenModal }: { onOpenModal: () => void }) {
               transition={{ duration: 1.2, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="group cursor-pointer block"
             >
-              <div className="relative aspect-[16/11] rounded-[2.5rem] md:rounded-[3rem] overflow-hidden mb-8 transition-all duration-1000 group-hover:shadow-[0_40px_100px_rgba(6,182,212,0.08)]">
+              <div className="relative aspect-[16/11] rounded-[2rem] md:rounded-[3rem] overflow-hidden mb-8 transition-all duration-1000 group-hover:shadow-[0_40px_100px_rgba(6,182,212,0.08)]">
                 <ProjectVisual type={project.type} isMobile={isMobile} />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-1000" />
                 
                 <div className="absolute inset-x-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-6 group-hover:translate-y-0 scale-90 group-hover:scale-100 z-20">
-                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white text-black flex items-center justify-center shadow-3xl group-hover:scale-110 transition-transform duration-700">
-                        <ArrowRight className="w-8 h-8 md:w-10 md:h-10 -rotate-45" />
+                    <div className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-white text-black flex items-center justify-center shadow-3xl group-hover:scale-110 transition-transform duration-700">
+                        <ArrowRight className="w-6 h-6 md:w-10 md:h-10 -rotate-45" />
                     </div>
                 </div>
 
-                <div className="absolute top-8 left-8 z-10 glass-dark px-5 py-2.5 rounded-xl text-[8px] font-black tracking-[0.4em] text-white/20 group-hover:text-primary transition-all uppercase">
+                <div className="absolute top-6 left-6 md:top-8 md:left-8 z-10 glass-dark px-4 py-2 rounded-xl text-[7px] md:text-[8px] font-black tracking-[0.4em] text-white/20 group-hover:text-primary transition-all uppercase">
                   DEPLOYMENT_{i + 1}
                 </div>
               </div>
               
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">
                  <div>
-                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-black mb-2 group-hover:text-primary transition-colors tracking-tighter text-white uppercase">
+                    <h3 className="text-2xl sm:text-4xl lg:text-5xl font-display font-black mb-2 group-hover:text-primary transition-colors tracking-tighter text-white uppercase">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-600 font-bold text-sm md:text-base tracking-tight">{project.category}</p>
+                    <p className="text-zinc-600 font-bold text-xs sm:text-base tracking-tight">{project.category}</p>
                  </div>
                  <div className="flex flex-wrap gap-2">
                     {project.tags.map(tag => (
-                      <span key={tag} className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500 border border-white/5 px-4 py-1.5 rounded-full bg-white/[0.02] shadow-sm">
+                      <span key={tag} className="text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase text-zinc-500 sm:border sm:border-white/5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/[0.02]">
                         {tag}
                       </span>
                     ))}

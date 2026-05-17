@@ -46,6 +46,17 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -151,20 +162,6 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
           </Magnetic>
 
           <Magnetic strength={0.1}>
-            <a 
-              href="https://www.instagram.com/buildwithnexgen" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-primary hover:border-primary/40 hover:bg-primary/5 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-500 group"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 group-hover:scale-110 transition-transform">
-                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-              </svg>
-            </a>
-          </Magnetic>
-          <Magnetic strength={0.1}>
             <motion.button
               onClick={onOpenModal}
               whileHover={{ scale: 1.05 }}
@@ -196,9 +193,9 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
             animate="open"
             exit="closed"
             variants={mobileMenuVariants}
-            className="md:hidden fixed inset-x-0 top-0 h-screen bg-zinc-950/98 backdrop-blur-xl z-[-1] overflow-hidden"
+            className="md:hidden fixed inset-x-0 top-0 h-screen bg-zinc-950/98 backdrop-blur-xl z-[60] overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
           >
-            <div className="container mx-auto px-6 pt-32 pb-12 flex flex-col h-full">
+            <div className="container mx-auto px-6 pt-32 pb-12 flex flex-col min-h-full">
               <div className="flex flex-col space-y-10 flex-1">
                 {navLinks.map((link) => (
                   <motion.button
@@ -258,23 +255,6 @@ export default function Navbar({ onOpenModal }: { onOpenModal: () => void }) {
                  <div className="flex flex-col items-center md:items-start gap-2">
                    <span>NexGenStudio 2024</span>
                    <a href="mailto:buildwithnexgen@gmail.com" className="text-zinc-500 hover:text-primary transition-colors tracking-[0.2em] lowercase font-sans font-medium text-xs">buildwithnexgen@gmail.com</a>
-                 </div>
-                 <div className="flex flex-col items-center gap-3">
-                    <span className="text-[8px] opacity-40">Follow our journey</span>
-                    <div className="flex items-center space-x-4">
-                       <a 
-                         href="https://www.instagram.com/buildwithnexgen" 
-                         target="_blank" 
-                         rel="noopener noreferrer"
-                         className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center text-zinc-400 hover:text-primary hover:border-primary/40 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] transition-all duration-500"
-                       >
-                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                         </svg>
-                       </a>
-                    </div>
                  </div>
                  <div className="flex items-center space-x-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_#10b981]" />

@@ -95,14 +95,14 @@ export default function GlobalSearch() {
       
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[1000] flex items-start justify-center pt-20 md:pt-40 px-4 md:px-0">
+          <div className="fixed inset-0 z-[1000] flex items-start justify-center pt-10 sm:pt-20 md:pt-40 px-4">
             {/* Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
+              className="absolute inset-0 bg-black/90 backdrop-blur-md"
             />
 
             {/* Modal */}
@@ -110,33 +110,30 @@ export default function GlobalSearch() {
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              className="relative w-full max-w-2xl bg-zinc-950/80 border border-white/10 rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] glass-premium"
+              className="relative w-full max-w-2xl bg-zinc-950/90 border border-white/10 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] backdrop-blur-xl flex flex-col max-h-[80vh]"
             >
-              <div className="p-6 border-b border-white/5 flex items-center space-x-4">
-                <Search className="w-6 h-6 text-primary animate-pulse" />
+              <div className="p-4 sm:p-6 border-b border-white/5 flex items-center space-x-3 sm:space-x-4">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-primary animate-pulse" />
                 <input 
                   ref={inputRef}
                   type="text"
-                  placeholder="Ask Cortex... (Services, Process, Portfolios)"
+                  placeholder="Ask Cortex..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  className="bg-transparent border-none outline-none text-xl text-white w-full placeholder:text-zinc-700 font-display font-medium tracking-tight"
+                  className="bg-transparent border-none outline-none text-lg sm:text-xl text-white w-full placeholder:text-zinc-700 font-display font-medium tracking-tight"
                 />
-                <div className="flex items-center space-x-2 bg-white/[0.03] px-2 py-1 rounded-lg border border-white/5">
-                  <Command className="w-3 h-3 text-zinc-500" />
-                  <span className="text-[10px] font-black text-zinc-500">K</span>
-                </div>
                 <button 
                   onClick={() => setIsOpen(false)}
                   className="p-2 hover:bg-white/5 rounded-xl transition-colors"
+                  aria-label="Close search"
                 >
                   <X className="w-5 h-5 text-zinc-500" />
                 </button>
               </div>
 
               {/* Results */}
-              <div className="max-h-[60vh] overflow-y-auto p-4 custom-scrollbar">
+              <div className="flex-1 overflow-y-auto p-4 custom-scrollbar overscroll-contain [-webkit-overflow-scrolling:touch]">
                 {query.length > 0 && results.length === 0 && (
                   <div className="p-12 text-center">
                     <p className="text-zinc-600 font-medium tracking-tight">No convergence found for "{query}"</p>

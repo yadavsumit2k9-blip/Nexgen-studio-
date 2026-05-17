@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { Instagram } from 'lucide-react';
 import Magnetic from './Magnetic';
 import Logo from './Logo';
 
@@ -14,25 +13,10 @@ export default function Footer() {
             <div className="mb-8">
                <Logo />
             </div>
-            <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-10 max-w-sm font-medium">
+            <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-4 max-w-sm font-medium">
               Architecting the systems of tomorrow with specialized AI engineering 
               and premium digital craftsmanship for leading companies.
             </p>
-            <div className="flex flex-col space-y-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-100/20">Follow our journey</span>
-              <div className="flex space-x-3">
-                <Magnetic strength={0.1}>
-                  <a 
-                    href="https://www.instagram.com/buildwithnexgen" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-xl border border-white/10 flex items-center justify-center text-zinc-500 hover:text-primary hover:border-primary/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-700 shadow-2xl bg-zinc-950/50 group"
-                  >
-                    <Instagram className="w-5 h-5 group-hover:scale-110 transition-transform duration-500" />
-                  </a>
-                </Magnetic>
-              </div>
-            </div>
           </div>
 
           <div>

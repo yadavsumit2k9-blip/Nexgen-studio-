@@ -198,7 +198,7 @@ export default function Services() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[220px] md:auto-rows-[240px]">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 md:auto-rows-[240px]">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
@@ -206,9 +206,9 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className={`${service.className} group relative bg-zinc-950/0 hover:bg-zinc-950/40 p-6 md:p-8 rounded-[2rem] md:rounded-[2.5rem] overflow-hidden flex flex-col justify-between transition-all duration-1000 cursor-default`}
+              className={`${service.className} group relative bg-zinc-950/0 hover:bg-zinc-950/40 p-8 sm:p-10 rounded-[2.5rem] overflow-hidden flex flex-col justify-between transition-all duration-1000 cursor-default`}
             >
-              <div className="absolute inset-0 bg-white/[0.02] group-hover:bg-transparent transition-colors duration-1000" />
+              <div className="absolute inset-0 bg-white/[0.02] sm:border sm:border-white/5 group-hover:bg-transparent group-hover:border-transparent transition-all duration-1000" />
               <CardVisual type={service.visual || ''} />
               
               <div className="relative z-10">

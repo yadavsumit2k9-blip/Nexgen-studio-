@@ -23,22 +23,22 @@ export default function AutomationShowcase() {
   const isMobile = useMobile();
 
   return (
-    <section className="py-24 relative bg-zinc-950 overflow-hidden">
+    <section className="py-16 md:py-24 relative bg-zinc-950 overflow-hidden">
       {/* Background patterns */}
-      <div className="absolute inset-0 z-0 opacity-30">
+      <div className="absolute inset-0 z-0 opacity-20 md:opacity-30">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/10 to-transparent" />
          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#ffffff05_1px,transparent_1px)] bg-[size:20px_20px]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
-          <div className="flex-1">
+      <div className="container mx-auto px-5 md:px-6 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex-1 w-full">
             <AnimatedHeading
               text="The Next Era of Automation"
               highlightedWords={["Next", "Era", "Automation"]}
-              className="text-3xl md:text-6xl font-display font-bold mb-8"
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 md:mb-8 tracking-tighter"
             />
-            <p className="text-base text-white/50 mb-10 leading-relaxed max-w-xl">
+            <p className="text-sm md:text-base text-white/50 mb-8 md:mb-10 leading-relaxed max-w-xl">
               We build end-to-end pipelines that connect your favorite tools like 
               Slack, Shopify, and WhatsApp to custom AI brains that work while you sleep.
             </p>
@@ -62,13 +62,13 @@ export default function AutomationShowcase() {
             </div>
           </div>
 
-          <div className="flex-1 relative w-full">
+          <div className="flex-1 relative w-full mt-8 lg:mt-0">
             {/* Visual Logic Flow representation */}
             <motion.div 
               initial={{ opacity: 0, rotateY: isMobile ? 0 : 20 }}
               whileInView={{ opacity: 1, rotateY: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              className="relative p-7 md:p-10 rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-md sm:backdrop-blur-xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card"
+              className="relative p-5 sm:p-7 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-zinc-950/20 backdrop-blur-md sm:backdrop-blur-xl overflow-hidden will-change-transform shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/5 group/card"
               animate={{ 
                 y: [0, -8, 0],
               }}
@@ -85,10 +85,10 @@ export default function AutomationShowcase() {
               <div className="absolute top-0 left-1/4 w-1/2 h-1/2 bg-primary/10 blur-[80px] pointer-events-none opacity-50" />
               
               <div className="relative z-10">
-                <div className="flex justify-between mb-12">
+                <div className="flex justify-between mb-8 md:mb-12">
                    <div className="flex items-center space-x-3 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#06b6d4]" />
-                      <span className="text-[9px] font-black tracking-[0.2em] text-white/40 uppercase font-mono">AUTOMATION_ACTIVE</span>
+                      <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-primary shadow-[0_0_8px_#06b6d4]" />
+                      <span className="text-[8px] md:text-[9px] font-black tracking-[0.2em] text-white/40 uppercase font-mono">AUTOMATION_ACTIVE</span>
                    </div>
                    <div className="flex space-x-1.5">
                       {[1, 2, 3].map(i => (
@@ -100,11 +100,11 @@ export default function AutomationShowcase() {
                    </div>
                 </div>
   
-                <div className="space-y-10 relative">
+                <div className="space-y-8 md:space-y-10 relative">
                    {/* Animated Glowing Connection Path */}
-                   <svg className="absolute left-[31px] top-6 bottom-6 w-8 pointer-events-none opacity-50">
+                   <svg className="absolute left-[23px] sm:left-[31px] top-6 bottom-6 w-8 pointer-events-none opacity-50">
                       <motion.path
-                        d="M 1,0 V 260"
+                        d={isMobile ? "M 1,0 V 220" : "M 1,0 V 260"}
                         stroke="url(#automation-line-grad)"
                         strokeWidth="1.5"
                         strokeDasharray="4 8"
@@ -126,10 +126,10 @@ export default function AutomationShowcase() {
                      whileInView={{ opacity: 1, x: 0 }}
                      className="flex items-center space-x-4 md:space-x-6 relative z-10"
                    >
-                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-zinc-900 border border-primary/30 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.15)]">
-                         <MessageCircle className="text-primary w-5 h-5 md:w-6 md:h-6" />
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-zinc-900 border border-primary/30 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.15)]">
+                         <MessageCircle className="text-primary w-4 h-4 md:w-6 md:h-6" />
                       </div>
-                      <div className="glass-dark p-3.5 md:p-5 rounded-xl md:rounded-2xl border border-white/10 flex-1 group hover:border-primary/40 transition-all">
+                      <div className="glass-dark p-3 sm:p-5 rounded-xl md:rounded-2xl border border-white/10 flex-1 group hover:border-primary/40 transition-all">
                          <div className="flex justify-between items-start mb-2">
                             <p className="text-[10px] font-mono text-primary uppercase tracking-widest">Ingestion</p>
                             <span className="text-[8px] text-white/20">9ms</span>
@@ -146,12 +146,12 @@ export default function AutomationShowcase() {
                    <motion.div 
                       initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      className="flex items-center space-x-4 md:space-x-6 relative z-10 translate-x-3 md:translate-x-10"
+                      className="flex items-center space-x-4 md:space-x-6 relative z-10 sm:translate-x-6 md:translate-x-10"
                    >
-                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.3)]">
-                         <Cpu className="text-black w-6 h-6 md:w-8 md:h-8" />
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary flex items-center justify-center shadow-[0_0_40px_rgba(6,182,212,0.3)]">
+                         <Cpu className="text-black w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
                       </div>
-                      <div className="glass p-3.5 md:p-5 rounded-xl md:rounded-2xl border border-primary/20 flex-1 shadow-2xl relative overflow-hidden">
+                      <div className="glass p-3 sm:p-5 rounded-xl md:rounded-2xl border border-primary/20 flex-1 shadow-2xl relative overflow-hidden">
                          <div className="absolute inset-0 bg-primary/5 animate-pulse" />
                          <p className="text-[10px] font-mono text-primary uppercase tracking-widest mb-1.5 relative z-10">Neural Analysis</p>
                          <p className="text-xs md:text-sm font-bold text-white relative z-10 truncate">GPT-4o Reasoning Engine</p>
@@ -170,10 +170,10 @@ export default function AutomationShowcase() {
                      whileInView={{ opacity: 1, x: 0 }}
                      className="flex items-center space-x-4 md:space-x-6 relative z-10"
                    >
-                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center">
-                         <Send className="text-white w-5 h-5 md:w-6 md:h-6" />
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center">
+                         <Send className="text-white w-4 h-4 md:w-6 md:h-6" />
                       </div>
-                      <div className="glass-dark p-3.5 md:p-5 rounded-xl md:rounded-2xl border border-white/10 flex-1 group hover:border-emerald-500/40 transition-all">
+                      <div className="glass-dark p-3 sm:p-5 rounded-xl md:rounded-2xl border border-white/10 flex-1 group hover:border-emerald-500/40 transition-all">
                          <p className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest mb-1">Execution</p>
                          <p className="text-xs md:text-sm font-bold text-white/90">Automated CRM & WhatsApp Reply</p>
                          <div className="mt-3 flex items-center space-x-2">
